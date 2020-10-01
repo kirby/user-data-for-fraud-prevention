@@ -5,6 +5,7 @@ Fraud prevention headers submitted by an application are expected to meet the re
 
 Here are some of HMRC's fraud prevention headers required to be sent by web applications, for which the values can be generated using this library in the format that HMRC expects:
 
+1. Gov-Client-Device-ID (An identifier unique to the originating device)
 1. Gov-Client-Timezone (The local timezone of the originating device, expressed as UTC±)
 1. Gov-Client-Screens (Originating device’s screen details like width, height, scaling-factor, colour-depth)
 1. Gov-Client-Window-Size (Originating device’s window width and height)

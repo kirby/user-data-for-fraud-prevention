@@ -9,12 +9,14 @@ import {
   getWindowHeight,
   getWindowWidth,
   getTimezone,
+  getUUID,
 } from "../common/browserInfoHelper";
 
 /**
  * Enum object of keys for each header in the Map returned by getFraudPreventionHeaders().headers
  */
 export const fraudPreventionHeadersEnum = {
+  DEVICE_UUID: "Gov-Client-Device-ID",
   TIMEZONE: "Gov-Client-Timezone",
   SCREENS_DETAILS: "Gov-Client-Screens",
   WINDOW_SIZE: "Gov-Client-Window-Size",
@@ -41,12 +43,22 @@ export const getFraudPreventionHeaders = async () => {
   const headers = new Map();
   const errors = [];
   const headerFunctions = [
-    { header: fraudPreventionHeadersEnum.TIMEZONE, callback: getTimezone },
+    { 
+      header: fraudPreventionHeadersEnum.DEVICE_UUID, 
+      callback: getUUID
+    },
+    {
+      header: fraudPreventionHeadersEnum.TIMEZONE, 
+      callback: getTimezone
+    },
     {
       header: fraudPreventionHeadersEnum.SCREENS_DETAILS,
       callback: getScreenDetails,
     },
-    { header: fraudPreventionHeadersEnum.WINDOW_SIZE, callback: getWindowSize },
+    { 
+      header: fraudPreventionHeadersEnum.WINDOW_SIZE, 
+      callback: getWindowSize
+    },
     {
       header: fraudPreventionHeadersEnum.BROWSER_PLUGINS,
       callback: () => encodeURI(getBrowserPluginsAsString()),
